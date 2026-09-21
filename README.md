@@ -260,16 +260,6 @@ compose.yaml            Complete local deployment
 .github/workflows/ci.yml TypeScript checks and Docker build
 ```
 
-To publish to your own empty GitHub repository after reviewing the files:
-
-```sh
-git init -b main
-git add .
-git commit -m "Build hotel offer orchestrator"
-git remote add origin https://github.com/YOUR_ACCOUNT/hotel-offer-orchestrator.git
-git push -u origin main
-```
-
 Deployment to another Docker host uses the same checkout and `docker compose up --build --wait` command. Use an SSH tunnel to access the localhost-bound API and Temporal UI on a remote demo host, or configure an ingress for the intended deployment.
 
 ## References
