@@ -254,7 +254,6 @@ src/
   search-service.ts     Bounded workflow execution
   server.ts             API entry point
   worker.ts             Worker entry point
-postman/                Saved requests for manual API use
 Dockerfile              Shared API/worker image
 compose.yaml            Complete local deployment
 .github/workflows/ci.yml TypeScript checks and Docker build
