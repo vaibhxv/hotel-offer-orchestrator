@@ -1,0 +1,105 @@
+name: hotel-offer-orchestrator
+
+x-app: &app
+  build: .
+  image: hotel-offer-orchestrator:local
+  init: true
+  restart: unless-stopped
+  environment: &environment
+    PORT: 3000
+    WORKER_HEALTH_PORT: 3001
+    REDIS_URL: redis://redis:6379
+    TEMPORAL_ADDRESS: temporal:7233
+    TEMPORAL_NAMESPACE: default
+    TEMPORAL_TASK_QUEUE: hotel-offers
+    SUPPLIER_A_URL: http://api:3000/supplierA/hotels
+    SUPPLIER_B_URL: http://api:3000/supplierB/hotels
+    SUPPLIER_TIMEOUT_MS: ${SUPPLIER_TIMEOUT_MS:-2000}
+    REDIS_SNAPSHOT_TTL_SECONDS: ${REDIS_SNAPSHOT_TTL_SECONDS:-3600}
+    SUPPLIER_A_DOWN: ${SUPPLIER_A_DOWN:-false}
+    SUPPLIER_B_DOWN: ${SUPPLIER_B_DOWN:-false}
+    LOG_LEVEL: ${LOG_LEVEL:-info}
+
+services:
+  redis:
+    image: redis:7.4-bookworm
+    command: [redis-server, --appendonly, 'yes']
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:6379:6379
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  temporal:
+    image: temporalio/temporal:1.9.1
+    command:
+      [
+        server,
+        start-dev,
+        --ip,
+        0.0.0.0,
+        --db-filename,
+        /home/temporal/temporal.db,
+      ]
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:7233:7233
+      - 127.0.0.1:8233:8233
+    volumes:
+      - temporal-data:/home/temporal
+    healthcheck:
+      test:
+        [CMD, temporal, operator, cluster, health, --address, 127.0.0.1:7233]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  api:
+    <<: *app
+    ports:
+      - 127.0.0.1:${PORT:-3000}:3000
+    depends_on:
+      redis:
+        condition: service_healthy
+      temporal:
+        condition: service_healthy
+    stop_grace_period: 75s
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:3000/health/live').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  worker:
+    <<: *app
+    command: [node, dist/worker.js]
+    depends_on:
+      api:
+        condition: service_healthy
+    stop_grace_period: 45s
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:3001/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  redis-data:
+  temporal-data:

@@ -1,0 +1,467 @@
+{
+	"info": {
+		"_postman_id": "f65573ae-1dea-4449-9645-d74aa9131872",
+		"name": "Hotel Orchestration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17039580"
+	},
+	"item": [
+		{
+			"name": "Delhi hotels",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/hotels?city=delhi",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "delhi"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Request-Id",
+							"value": "a3dd3f74-b303-406c-9c47-85147e3f15fb"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "384"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"180-qpuAF5F1LVe1UVNysHMXwCdLluY\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 21 Sep 2026 09:53:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"City Palace\",\n        \"price\": 4200,\n        \"supplier\": \"Supplier A\",\n        \"commissionPct\": 12\n    },\n    {\n        \"name\": \"Garden Inn\",\n        \"price\": 4800,\n        \"supplier\": \"Supplier B\",\n        \"commissionPct\": 14\n    },\n    {\n        \"name\": \"Holtin\",\n        \"price\": 5340,\n        \"supplier\": \"Supplier B\",\n        \"commissionPct\": 20\n    },\n    {\n        \"name\": \"Radison\",\n        \"price\": 5900,\n        \"supplier\": \"Supplier A\",\n        \"commissionPct\": 13\n    },\n    {\n        \"name\": \"The Grand\",\n        \"price\": 7000,\n        \"supplier\": \"Supplier A\",\n        \"commissionPct\": 15\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Filter by price",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/hotels?city=delhi&minPrice=5340&maxPrice=5900",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "delhi"
+								},
+								{
+									"key": "minPrice",
+									"value": "5340"
+								},
+								{
+									"key": "maxPrice",
+									"value": "5900"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Request-Id",
+							"value": "902f79b0-219c-4765-9ad5-72aa87bf8c2f"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "150"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"96-c7YAbTcMLha1TL2+YporJq26F6g\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 21 Sep 2026 09:53:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"Holtin\",\n        \"price\": 5340,\n        \"supplier\": \"Supplier B\",\n        \"commissionPct\": 20\n    },\n    {\n        \"name\": \"Radison\",\n        \"price\": 5900,\n        \"supplier\": \"Supplier A\",\n        \"commissionPct\": 13\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "No results",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/hotels?city=atlantis",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "atlantis"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Request-Id",
+							"value": "209eed28-9831-4486-b749-3f52a9e1865a"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 21 Sep 2026 09:53:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "Supplier A",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/supplierA/hotels?city=delhi",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supplierA",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "delhi"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Request-Id",
+							"value": "069314f8-a067-408f-85cb-7cd47686df8c"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "330"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"14a-YQl5m9h+O1R98RB68iOKi4vkKp8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 21 Sep 2026 09:53:49 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"hotelId\": \"a1\",\n        \"name\": \"Holtin\",\n        \"price\": 6000,\n        \"city\": \"delhi\",\n        \"commissionPct\": 10\n    },\n    {\n        \"hotelId\": \"a2\",\n        \"name\": \"Radison\",\n        \"price\": 5900,\n        \"city\": \"delhi\",\n        \"commissionPct\": 13\n    },\n    {\n        \"hotelId\": \"a3\",\n        \"name\": \"City Palace\",\n        \"price\": 4200,\n        \"city\": \"delhi\",\n        \"commissionPct\": 12\n    },\n    {\n        \"hotelId\": \"a4\",\n        \"name\": \"The Grand\",\n        \"price\": 7000,\n        \"city\": \"delhi\",\n        \"commissionPct\": 15\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Supplier B",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/supplierB/hotels?city=delhi",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supplierB",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "delhi"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Request-Id",
+							"value": "cf35601a-bb29-463f-8fd3-df448d21d3bd"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "329"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"149-9jvd179XZBEU/9fNBZe9czzP9n4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 21 Sep 2026 09:53:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"hotelId\": \"b1\",\n        \"name\": \"Holtin\",\n        \"price\": 5340,\n        \"city\": \"delhi\",\n        \"commissionPct\": 20\n    },\n    {\n        \"hotelId\": \"b2\",\n        \"name\": \"Radison\",\n        \"price\": 6200,\n        \"city\": \"delhi\",\n        \"commissionPct\": 18\n    },\n    {\n        \"hotelId\": \"b3\",\n        \"name\": \"Garden Inn\",\n        \"price\": 4800,\n        \"city\": \"delhi\",\n        \"commissionPct\": 14\n    },\n    {\n        \"hotelId\": \"b4\",\n        \"name\": \"The Grand\",\n        \"price\": 7000,\n        \"city\": \"delhi\",\n        \"commissionPct\": 19\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Request-Id",
+							"value": "7343ef9e-45e1-47fe-ab29-3f29d2301b07"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "144"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"90-0wxnyA6cEbZWcmWqGIiOn/BcIgs\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 21 Sep 2026 09:53:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"healthy\",\n    \"dependencies\": {\n        \"redis\": {\n            \"status\": \"up\"\n        },\n        \"temporal\": {\n            \"status\": \"up\"\n        },\n        \"supplierA\": {\n            \"status\": \"up\"\n        },\n        \"supplierB\": {\n            \"status\": \"up\"\n        }\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": ""
+		}
+	]
+}
