@@ -236,7 +236,7 @@ npm run build
 
 ## Postman
 
-Import `postman/hotel-offer-orchestrator.postman_collection.json` into Postman with `baseUrl=http://localhost:3000`. Use the saved requests to manually inspect hotel searches, price filters, supplier responses, health, and invalid input.
+Import `Hotel Orchestration.postman_collection.json` into Postman with `baseUrl=http://localhost:3000`. Use the saved requests to manually inspect hotel searches, price filters, supplier responses, health, and invalid input.
 
 For the **Supplier B outage** folder, first enable `SUPPLIER_B_DOWN` and restart the API. Send these requests individually, then restore the supplier before using the other requests.
 
@@ -254,20 +254,9 @@ src/
   search-service.ts     Bounded workflow execution
   server.ts             API entry point
   worker.ts             Worker entry point
-postman/                Saved requests for manual API use
 Dockerfile              Shared API/worker image
 compose.yaml            Complete local deployment
 .github/workflows/ci.yml TypeScript checks and Docker build
-```
-
-To publish to your own empty GitHub repository after reviewing the files:
-
-```sh
-git init -b main
-git add .
-git commit -m "Build hotel offer orchestrator"
-git remote add origin https://github.com/YOUR_ACCOUNT/hotel-offer-orchestrator.git
-git push -u origin main
 ```
 
 Deployment to another Docker host uses the same checkout and `docker compose up --build --wait` command. Use an SSH tunnel to access the localhost-bound API and Temporal UI on a remote demo host, or configure an ingress for the intended deployment.
