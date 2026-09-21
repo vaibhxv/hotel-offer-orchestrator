@@ -236,7 +236,7 @@ npm run build
 
 ## Postman
 
-Import `postman/hotel-offer-orchestrator.postman_collection.json` into Postman with `baseUrl=http://localhost:3000`. Use the saved requests to manually inspect hotel searches, price filters, supplier responses, health, and invalid input.
+Import `Hotel Orchestration.postman_collection.json` into Postman with `baseUrl=http://localhost:3000`. Use the saved requests to manually inspect hotel searches, price filters, supplier responses, health, and invalid input.
 
 For the **Supplier B outage** folder, first enable `SUPPLIER_B_DOWN` and restart the API. Send these requests individually, then restore the supplier before using the other requests.
 
